@@ -17,7 +17,7 @@ router.get("/", async (req: Request, res: Response) => {
 
   type bookType = {
     book: String;
-    aliases: Array<String>;
+    aliase: string;
     chapters: Number;
   };
 
@@ -39,23 +39,20 @@ router.get("/", async (req: Request, res: Response) => {
   };
 
   let bookFinder =
-    bookList.books.find(
+    bookList.find(
       (o: bookType) => o.book.toLowerCase() === book.toLowerCase()
-    ) ||
-    bookList.books.find((o: bookType) =>
-      o.aliases.includes(book.toUpperCase())
-    );
+    ) || bookList.find((o: bookType) => o.aliase === book.toUpperCase());
 
   if (!bookFinder)
     return apiError(400, `Could not find book '${book}' by name or alias.`);
 
-  let URL = `${baseURL}/${versionFinder.id}/${bookFinder.aliases[0]}.${chapter}.${verses}`;
+  let URL = `${baseURL}/${versionFinder.id}/${bookFinder.aliase}.${chapter}.${verses}`;
+  console.log(URL);
 
   try {
     const { data } = await axios.get(URL);
 
     const $ = cheerio.load(data);
-    console.log("title", $(".ChapterContent_heading__xBDcs").eq(-1).text());
 
     const lastVerse = $(".ChapterContent_reader__UZc2K").eq(-1).text();
     if (lastVerse) return apiError(400, "Verse not found");
@@ -69,7 +66,6 @@ router.get("/", async (req: Request, res: Response) => {
     let unformattedVerse = "";
     await wrapper.each((i, p) => {
       unformattedVerse = $(p).eq(0).text();
-      console.log(unformattedVerse);
       let formattedVerse = unformattedVerse.replace(/\n/g, " ");
       versesArray.push(formattedVerse);
     });
@@ -81,10 +77,13 @@ router.get("/", async (req: Request, res: Response) => {
     });
 
     return res.status(200).send({
-      citation: citationsArray[0],
-      // passage: versesArray[0].split(".").map((e, index) => ({ index, e })),
-      passage: versesArray,
-      // unformattedVerse:unformattedVerse.split("\n").map((e, index) => ({ index, e })),
+      status: "success",
+      data: {
+        citation: citationsArray[0],
+        // passage: versesArray[0].split(".").map((e, index) => ({ index, e })),
+        passage: versesArray[0],
+        // unformattedVerse:unformattedVerse.split("\n").map((e, index) => ({ index, e })),
+      },
     });
   } catch (err) {
     console.error(err);

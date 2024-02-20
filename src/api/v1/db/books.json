@@ -1,466 +1,398 @@
-{
-    "books": [
-        {
-            "book": "Genesis",
-            "aliases": [
-                "GEN"
-            ],
-            "chapters": 50
-        },
-        {
-            "book": "Exodus",
-            "aliases": [
-                "EXO"
-            ],
-            "chapters": 40
-        },
-        {
-            "book": "Leviticus",
-            "aliases": [
-                "LEV"
-            ],
-            "chapters": 27
-        },
-        {
-            "book": "Numbers",
-            "aliases": [
-                "NUM"
-            ],
-            "chapters": 36
-        },
-        {
-            "book": "Deuteronomy",
-            "aliases": [
-                "DEU"
-            ],
-            "chapters": 34
-        },
-        {
-            "book": "Joshua",
-            "aliases": [
-                "JOS"
-            ],
-            "chapters": 24
-        },
-        {
-            "book": "Judges",
-            "aliases": [
-                "JDG"
-            ],
-            "chapters": 21
-        },
-        {
-            "book": "Ruth",
-            "aliases": [
-                "RUT"
-            ],
-            "chapters": 4
-        },
-        {
-            "book": "1st Samuel",
-            "aliases": [
-                "1SA"
-            ],
-            "chapters": 31
-        },
-        {
-            "book": "2nd Samuel",
-            "aliases": [
-                "2SA"
-            ],
-            "chapters": 24
-        },
-        {
-            "book": "1st Kings",
-            "aliases": [
-                "1KI"
-            ],
-            "chapters": 22
-        },
-        {
-            "book": "2nd Kings",
-            "aliases": [
-                "2KI"
-            ],
-            "chapters": 25
-        },
-        {
-            "book": "1st Chronicles",
-            "aliases": [
-                "1CH"
-            ],
-            "chapters": 29
-        },
-        {
-            "book": "2nd Chronicles",
-            "aliases": [
-                "2CH"
-            ],
-            "chapters": 36
-        },
-        {
-            "book": "Ezra",
-            "aliases": [
-                "EZR"
-            ],
-            "chapters": 10
-        },
-        {
-            "book": "Nehemiah",
-            "aliases": [
-                "NEH"
-            ],
-            "chapters": 13
-        },
-        {
-            "book": "Esther",
-            "aliases": [
-                "EST"
-            ],
-            "chapters": 10
-        },
-        {
-            "book": "Job",
-            "aliases": [
-                "JOB"
-            ],
-            "chapters": 42
-        },
-        {
-            "book": "Psalms",
-            "aliases": [
-                "PSA"
-            ],
-            "chapters": 150
-        },
-        {
-            "book": "Proverbs",
-            "aliases": [
-                "PRO"
-            ],
-            "chapters": 31
-        },
-        {
-            "book": "Ecclesiastes",
-            "aliases": [
-                "ECC"
-            ],
-            "chapters": 12
-        },
-        {
-            "book": "Song of Songs",
-            "aliases": [
-                "SNG"
-            ],
-            "chapters": 8
-        },
-        {
-            "book": "Isaiah",
-            "aliases": [
-                "ISA"
-            ],
-            "chapters": 66
-        },
-        {
-            "book": "Jeremiah",
-            "aliases": [
-                "JER"
-            ],
-            "chapters": 52
-        },
-        {
-            "book": "Lamentations",
-            "aliases": [
-                "LAM"
-            ],
-            "chapters": 5
-        },
-        {
-            "book": "Ezekiel",
-            "aliases": [
-                "EZK"
-            ],
-            "chapters": 48
-        },
-        {
-            "book": "Daniel",
-            "aliases": [
-                "DAN"
-            ],
-            "chapters": 12
-        },
-        {
-            "book": "Hosea",
-            "aliases": [
-                "HOS"
-            ],
-            "chapters": 14
-        },
-        {
-            "book": "Joel",
-            "aliases": [
-                "JOL"
-            ],
-            "chapters": 3
-        },
-        {
-            "book": "Amos",
-            "aliases": [
-                "AMO"
-            ],
-            "chapters": 9
-        },
-        {
-            "book": "Obadiah",
-            "aliases": [
-                "OBA"
-            ],
-            "chapters": 1
-        },
-        {
-            "book": "Jonah",
-            "aliases": [
-                "JON"
-            ],
-            "chapters": 4
-        },
-        {
-            "book": "Micah",
-            "aliases": [
-                "MIC"
-            ],
-            "chapters": 7
-        },
-        {
-            "book": "Nahum",
-            "aliases": [
-                "NAM"
-            ],
-            "chapters": 3
-        },
-        {
-            "book": "Habakkuk",
-            "aliases": [
-                "HAB"
-            ],
-            "chapters": 3
-        },
-        {
-            "book": "Zephaniah",
-            "aliases": [
-                "ZEP"
-            ],
-            "chapters": 3
-        },
-        {
-            "book": "Haggai",
-            "aliases": [
-                "HAG"
-            ],
-            "chapters": 2
-        },
-        {
-            "book": "Zechariah",
-            "aliases": [
-                "ZEC"
-            ],
-            "chapters": 14
-        },
-        {
-            "book": "Malachi",
-            "aliases": [
-                "MAL"
-            ],
-            "chapters": 4
-        },
-        {
-            "book": "Matthew",
-            "aliases": [
-                "MAT"
-            ],
-            "chapters": 28
-        },
-        {
-            "book": "Mark",
-            "aliases": [
-                "MRK"
-            ],
-            "chapters": 16
-        },
-        {
-            "book": "Luke",
-            "aliases": [
-                "LUK"
-            ],
-            "chapters": 24
-        },
-        {
-            "book": "John",
-            "aliases": [
-                "JHN"
-            ],
-            "chapters": 21
-        },
-        {
-            "book": "Acts",
-            "aliases": [
-                "ACT"
-            ],
-            "chapters": 28
-        },
-        {
-            "book": "Romans",
-            "aliases": [
-                "ROM"
-            ],
-            "chapters": 16
-        },
-        {
-            "book": "1st Corinthians",
-            "aliases": [
-                "1CO"
-            ],
-            "chapters": 16
-        },
-        {
-            "book": "2nd Corinthians",
-            "aliases": [
-                "2CO"
-            ],
-            "chapters": 13
-        },
-        {
-            "book": "Galatians",
-            "aliases": [
-                "GAL"
-            ],
-            "chapters": 6
-        },
-        {
-            "book": "Ephesians",
-            "aliases": [
-                "EPH"
-            ],
-            "chapters": 6
-        },
-        {
-            "book": "Philippians",
-            "aliases": [
-                "PHP"
-            ],
-            "chapters": 4
-        },
-        {
-            "book": "Colossians",
-            "aliases": [
-                "COL"
-            ],
-            "chapters": 4
-        },
-        {
-            "book": "1st Thessalonians",
-            "aliases": [
-                "1TH"
-            ],
-            "chapters": 5
-        },
-        {
-            "book": "2nd Thessalonians",
-            "aliases": [
-                "2TH"
-            ],
-            "chapters": 3
-        },
-        {
-            "book": "1st Timothy",
-            "aliases": [
-                "1TI"
-            ],
-            "chapters": 6
-        },
-        {
-            "book": "2nd Timothy",
-            "aliases": [
-                "2TI"
-            ],
-            "chapters": 4
-        },
-        {
-            "book": "Titus",
-            "aliases": [
-                "TIT"
-            ],
-            "chapters": 3
-        },
-        {
-            "book": "Philemon",
-            "aliases": [
-                "PHM"
-            ],
-            "chapters": 1
-        },
-        {
-            "book": "Hebrews",
-            "aliases": [
-                "HEB"
-            ],
-            "chapters": 13
-        },
-        {
-            "book": "James",
-            "aliases": [
-                "JAS"
-            ],
-            "chapters": 5
-        },
-        {
-            "book": "1st Peter",
-            "aliases": [
-                "1PE"
-            ],
-            "chapters": 5
-        },
-        {
-            "book": "2nd Peter",
-            "aliases": [
-                "2PE"
-            ],
-            "chapters": 3
-        },
-        {
-            "book": "1st John",
-            "aliases": [
-                "1JN"
-            ],
-            "chapters": 4
-        },
-        {
-            "book": "2nd John",
-            "aliases": [
-                "2JN"
-            ],
-            "chapters": 1
-        },
-        {
-            "book": "3rd John",
-            "aliases": [
-                "3JN"
-            ],
-            "chapters": 1
-        },
-        {
-            "book": "Jude",
-            "aliases": [
-                "JUD"
-            ],
-            "chapters": 1
-        },
-        {
-            "book": "Revelation",
-            "aliases": [
-                "REV"
-            ],
-            "chapters": 22
-        }
-    ]
-}
+[
+  {
+    "book": "Genesis",
+    "aliase": "GEN",
+    "chapters": 50,
+    "id": "1ae489f4bbdbca0d0cca2b10"
+  },
+  {
+    "book": "Exodus",
+    "aliase": "EXO",
+    "chapters": 40,
+    "id": "79a3d19cfea657fc602eaf8e"
+  },
+  {
+    "book": "Leviticus",
+    "aliase": "LEV",
+    "chapters": 27,
+    "id": "ed4e4a29ef28ee1dcb4b02f5"
+  },
+  {
+    "book": "Numbers",
+    "aliase": "NUM",
+    "chapters": 36,
+    "id": "9542b9cff89754eae18592e5"
+  },
+  {
+    "book": "Deuteronomy",
+    "aliase": "DEU",
+    "chapters": 34,
+    "id": "c652a799d15afc1ea39cabad"
+  },
+  {
+    "book": "Joshua",
+    "aliase": "JOS",
+    "chapters": 24,
+    "id": "6f693fa366b56d19b95e1f0d"
+  },
+  {
+    "book": "Judges",
+    "aliase": "JDG",
+    "chapters": 21,
+    "id": "ff5e345df530ffc7e9adfe16"
+  },
+  {
+    "book": "Ruth",
+    "aliase": "RUT",
+    "chapters": 4,
+    "id": "a6fdb7a5744315bd97bfeea6"
+  },
+  {
+    "book": "1st Samuel",
+    "aliase": "1SA",
+    "chapters": 31,
+    "id": "2b9ee963268c78ecbafed075"
+  },
+  {
+    "book": "2nd Samuel",
+    "aliase": "2SA",
+    "chapters": 24,
+    "id": "e2a0adda2e839dec5adffc0e"
+  },
+  {
+    "book": "1st Kings",
+    "aliase": "1KI",
+    "chapters": 22,
+    "id": "2bfbae06e2baa5dabc09db10"
+  },
+  {
+    "book": "2nd Kings",
+    "aliase": "2KI",
+    "chapters": 25,
+    "id": "a7e9c2cb22125bf9beae2c41"
+  },
+  {
+    "book": "1st Chronicles",
+    "aliase": "1CH",
+    "chapters": 29,
+    "id": "a939dcadccfb13ca13e17902"
+  },
+  {
+    "book": "2nd Chronicles",
+    "aliase": "2CH",
+    "chapters": 36,
+    "id": "e6ca33b967bca8b575338d32"
+  },
+  {
+    "book": "Ezra",
+    "aliase": "EZR",
+    "chapters": 10,
+    "id": "af1a0d79b95ab646b63c6f82"
+  },
+  {
+    "book": "Nehemiah",
+    "aliase": "NEH",
+    "chapters": 13,
+    "id": "fc7521bcea2cf4843c0c6f8b"
+  },
+  {
+    "book": "Esther",
+    "aliase": "EST",
+    "chapters": 10,
+    "id": "b6fa73f882f498dc4a861dfb"
+  },
+  {
+    "book": "Job",
+    "aliase": "JOB",
+    "chapters": 42,
+    "id": "a4b090b78cecb58c1deae482"
+  },
+  {
+    "book": "Psalms",
+    "aliase": "PSA",
+    "chapters": 150,
+    "id": "2db7b0cd9efb2496a588cbaf"
+  },
+  {
+    "book": "Proverbs",
+    "aliase": "PRO",
+    "chapters": 31,
+    "id": "e88a1bdccdaedbf52fbb6dc6"
+  },
+  {
+    "book": "Ecclesiastes",
+    "aliase": "ECC",
+    "chapters": 12,
+    "id": "3c430b2191ffb0ddef71dbaf"
+  },
+  {
+    "book": "Song of Songs",
+    "aliase": "SNG",
+    "chapters": 8,
+    "id": "c3fe85a1d02764826bafbb16"
+  },
+  {
+    "book": "Isaiah",
+    "aliase": "ISA",
+    "chapters": 66,
+    "id": "aaabb0dcadefc9fd7eb2c914"
+  },
+  {
+    "book": "Jeremiah",
+    "aliase": "JER",
+    "chapters": 52,
+    "id": "14bb0984eb9e76e0ccaee1bf"
+  },
+  {
+    "book": "Lamentations",
+    "aliase": "LAM",
+    "chapters": 5,
+    "id": "e7aadfc2717dadf1bc255226"
+  },
+  {
+    "book": "Ezekiel",
+    "aliase": "EZK",
+    "chapters": 48,
+    "id": "9abbd75fdd78b00f3f407adf"
+  },
+  {
+    "book": "Daniel",
+    "aliase": "DAN",
+    "chapters": 12,
+    "id": "5cbed83ae69c05d2d1c307f7"
+  },
+  {
+    "book": "Hosea",
+    "aliase": "HOS",
+    "chapters": 14,
+    "id": "e0af49da33dc9feaacedd2d6"
+  },
+  {
+    "book": "Joel",
+    "aliase": "JOL",
+    "chapters": 3,
+    "id": "df4075acd5a8b3be49bdb46c"
+  },
+  {
+    "book": "Amos",
+    "aliase": "AMO",
+    "chapters": 9,
+    "id": "fae7e0dda1af0b586ad9899e"
+  },
+  {
+    "book": "Obadiah",
+    "aliase": "OBA",
+    "chapters": 1,
+    "id": "b298938cefa01359dbc91a55"
+  },
+  {
+    "book": "Jonah",
+    "aliase": "JON",
+    "chapters": 4,
+    "id": "babb84e0c44ae0af57aea5b8"
+  },
+  {
+    "book": "Micah",
+    "aliase": "MIC",
+    "chapters": 7,
+    "id": "069affd57631dad05fcad9bd"
+  },
+  {
+    "book": "Nahum",
+    "aliase": "NAM",
+    "chapters": 3,
+    "id": "e6ddba5bbaecbff99144bc2b"
+  },
+  {
+    "book": "Habakkuk",
+    "aliase": "HAB",
+    "chapters": 3,
+    "id": "adb58310c33d9a7cdadebac9"
+  },
+  {
+    "book": "Zephaniah",
+    "aliase": "ZEP",
+    "chapters": 3,
+    "id": "73389cb132974b7a9c6fc3ff"
+  },
+  {
+    "book": "Haggai",
+    "aliase": "HAG",
+    "chapters": 2,
+    "id": "7aebfc8a9bc6edbaec70a8cd"
+  },
+  {
+    "book": "Zechariah",
+    "aliase": "ZEC",
+    "chapters": 14,
+    "id": "a78b8f26e49bb8b62867b5bc"
+  },
+  {
+    "book": "Malachi",
+    "aliase": "MAL",
+    "chapters": 4,
+    "id": "2e99f05af3dda2e4223de3e6"
+  },
+  {
+    "book": "Matthew",
+    "aliase": "MAT",
+    "chapters": 28,
+    "id": "3e1e9ce5eb43e610ba85c562"
+  },
+  {
+    "book": "Mark",
+    "aliase": "MRK",
+    "chapters": 16,
+    "id": "fb78473f56ea6432819a1d25"
+  },
+  {
+    "book": "Luke",
+    "aliase": "LUK",
+    "chapters": 24,
+    "id": "dfb2d3dab620c5b832ae3f8d"
+  },
+  {
+    "book": "John",
+    "aliase": "JHN",
+    "chapters": 21,
+    "id": "b728964b03a52aad4fae0efb"
+  },
+  {
+    "book": "Acts",
+    "aliase": "ACT",
+    "chapters": 28,
+    "id": "50d44d9bbfd83e6abcda7b9e"
+  },
+  {
+    "book": "Romans",
+    "aliase": "ROM",
+    "chapters": 16,
+    "id": "53ea6dad35fec3e1f6e9f5fa"
+  },
+  {
+    "book": "1st Corinthians",
+    "aliase": "1CO",
+    "chapters": 16,
+    "id": "0b7b6c93a5acbfdaf2d5dedd"
+  },
+  {
+    "book": "2nd Corinthians",
+    "aliase": "2CO",
+    "chapters": 13,
+    "id": "fea2ff0dffcffede0762e4dc"
+  },
+  {
+    "book": "Galatians",
+    "aliase": "GAL",
+    "chapters": 6,
+    "id": "3a7a826ee9d555dd7cdad75a"
+  },
+  {
+    "book": "Ephesians",
+    "aliase": "EPH",
+    "chapters": 6,
+    "id": "a915b487adad0667cd04b7c0"
+  },
+  {
+    "book": "Philippians",
+    "aliase": "PHP",
+    "chapters": 4,
+    "id": "cbf60779dc7af8635fac6cab"
+  },
+  {
+    "book": "Colossians",
+    "aliase": "COL",
+    "chapters": 4,
+    "id": "37df64d8ac0cb2802ab6bbc0"
+  },
+  {
+    "book": "1st Thessalonians",
+    "aliase": "1TH",
+    "chapters": 5,
+    "id": "b36bc1f9744293eb21e5beb2"
+  },
+  {
+    "book": "2nd Thessalonians",
+    "aliase": "2TH",
+    "chapters": 3,
+    "id": "0e2c1dcf2f213e89babacc03"
+  },
+  {
+    "book": "1st Timothy",
+    "aliase": "1TI",
+    "chapters": 6,
+    "id": "fbddece513aca7ced8eecbfb"
+  },
+  {
+    "book": "2nd Timothy",
+    "aliase": "2TI",
+    "chapters": 4,
+    "id": "f80ffdfd6a2cb8ddfcca5d8e"
+  },
+  {
+    "book": "Titus",
+    "aliase": "TIT",
+    "chapters": 3,
+    "id": "22ff7b20c866c26582adfa33"
+  },
+  {
+    "book": "Philemon",
+    "aliase": "PHM",
+    "chapters": 1,
+    "id": "e8c0db19277f59bdbbbdd8c8"
+  },
+  {
+    "book": "Hebrews",
+    "aliase": "HEB",
+    "chapters": 13,
+    "id": "319efb0fb6e8f80d07013552"
+  },
+  {
+    "book": "James",
+    "aliase": "JAS",
+    "chapters": 5,
+    "id": "8fe59db9d0c56bca80f4d41f"
+  },
+  {
+    "book": "1st Peter",
+    "aliase": "1PE",
+    "chapters": 5,
+    "id": "d93e3b5fc3acb44b32c5adbd"
+  },
+  {
+    "book": "2nd Peter",
+    "aliase": "2PE",
+    "chapters": 3,
+    "id": "786e7b2faa23d3be09af6b69"
+  },
+  {
+    "book": "1st John",
+    "aliase": "1JN",
+    "chapters": 4,
+    "id": "aebe687a7adbdde42c3adf93"
+  },
+  {
+    "book": "2nd John",
+    "aliase": "2JN",
+    "chapters": 1,
+    "id": "2ceca62167ffc7d7ed1ff7fb"
+  },
+  {
+    "book": "3rd John",
+    "aliase": "3JN",
+    "chapters": 1,
+    "id": "7d83cb4ea5cb90b8f066ff70"
+  },
+  {
+    "book": "Jude",
+    "aliase": "JUD",
+    "chapters": 1,
+    "id": "ee08fa75dec3a5449cd5a9ef"
+  },
+  {
+    "book": "Revelation",
+    "aliase": "REV",
+    "chapters": 22,
+    "id": "0c02a1e62b5fb8ea0cef8fb4"
+  }
+]

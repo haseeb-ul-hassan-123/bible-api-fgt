@@ -1,9 +1,33 @@
 [
-    { "versionName": "AMP", "name": "Amplified Bible", "id": 0 },
-    { "versionName": "KJV", "name": "King James Version", "id": 1 },
-    { "versionName": "NLT", "name": "New Living Translation", "id": 2 },
-    { "versionName": "ESV", "name": "English Standard Version (2016)", "id": 3 },
-    { "versionName": "NIV", "name": "New International Version", "id": 4 },
-    { "versionName": "NKJV", "name": "New King James Version", "id": 5 },
-    { "versionName": "JNT", "name": "", "id": 6 }
+    {
+        "versionName": "AMP",
+        "name": "Amplified Bible",
+        "id": "9a13a5ab069b6c2cacfcf8eb"
+    },
+    {
+        "versionName": "KJV",
+        "name": "King James Version",
+        "id": "36cf6a1f2fc032a6af16cb1a"
+    },
+    {
+        "versionName": "NLT",
+        "name": "New Living Translation",
+        "id": "9a33b6e25abf71bcaf9af6e6"
+    },
+    {
+        "versionName": "ESV",
+        "name": "English Standard Version (2016)",
+        "id": "28106d82b8c4aacbe9d22d18"
+    },
+    {
+        "versionName": "NIV",
+        "name": "New International Version",
+        "id": "182cee165f0c9fc04fbdbc50"
+    },
+    {
+        "versionName": "NKJV",
+        "name": "New King James Version",
+        "id": "4b70eeeadbc0fbbfe30dce56"
+    },
+    { "versionName": "JNT", "name": "", "id": "904fadb984e78dbaa648847d" }
 ]
