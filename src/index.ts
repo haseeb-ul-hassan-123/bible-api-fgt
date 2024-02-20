@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
   return res.status(200).json({ body: req.body, status: "Trueee...." });
 });
 
-app.get("/api/v1/ping", async (req, res) => {
+app.get("/api/v1/verse-with-index", async (req, res) => {
   let { start, end, book, chapter } = req.query;
 
   if (!start || !end)
