@@ -1,0 +1,9 @@
+[
+  { "versionName": "AMP", "name": "Amplified Bible", "id": 0 },
+  { "versionName": "KJV", "name": "King James Version", "id": 1 },
+  { "versionName": "NLT", "name": "New Living Translation", "id": 2 },
+  { "versionName": "ESV", "name": "English Standard Version (2016)", "id": 3 },
+  { "versionName": "NIV", "name": "New International Version", "id": 4 },
+  { "versionName": "NKJV", "name": "New King James Version", "id": 5 },
+  { "versionName": "JNT", "name": "", "id": 6 }
+]
