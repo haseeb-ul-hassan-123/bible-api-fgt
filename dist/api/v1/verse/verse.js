@@ -38,6 +38,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const axios_1 = __importDefault(require("axios"));
 const cheerio = __importStar(require("cheerio"));
+const cache_1 = __importDefault(require("../../../cache"));
 // Router
 const router = express_1.default.Router();
 router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -50,6 +51,19 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const chapter = ((_a = (_f = req.query).chapter) !== null && _a !== void 0 ? _a : (_f.chapter = "1"));
     const verses = ((_b = (_g = req.query).verses) !== null && _b !== void 0 ? _b : (_g.verses = "1"));
     let version = ((_c = (_h = req.query).version) !== null && _c !== void 0 ? _c : (_h.version = "KJV"));
+    const redisQueryName = JSON.stringify({
+        url: "/api/v1/verse-with-index",
+        query: { verses, version, book, chapter },
+    });
+    const resp = yield cache_1.default.get(redisQueryName);
+    if (resp) {
+        const parsedResp = JSON.parse(resp);
+        return res.json({
+            status: "success",
+            fromCache: true,
+            data: { length: parsedResp.length, docs: parsedResp },
+        });
+    }
     function apiError(code, message) {
         res.status(code).send({
             code: code,
@@ -66,7 +80,6 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (!bookFinder)
         return apiError(400, `Could not find book '${book}' by name or alias.`);
     let URL = `${baseURL}/${versionFinder.id}/${bookFinder.aliase}.${chapter}.${verses}`;
-    console.log(URL);
     try {
         const { data } = yield axios_1.default.get(URL);
         const $ = cheerio.load(data);
@@ -89,12 +102,21 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             let citation = $(p).eq(0).text();
             citationsArray.push(citation);
         });
+        yield cache_1.default.set(redisQueryName, JSON.stringify({
+            citation: citationsArray[0],
+            // passage: versesArray[0].split(".").map((e, index) => ({ index, e })),
+            passage: versesArray[0],
+            // unformattedVerse:unformattedVerse.split("\n").map((e, index) => ({ index, e })),
+        }));
         return res.status(200).send({
             status: "success",
+            fromCache: false,
             data: {
-                citation: citationsArray[0],
-                // passage: versesArray[0].split(".").map((e, index) => ({ index, e })),
-                passage: versesArray[0],
+                doc: {
+                    citation: citationsArray[0],
+                    // passage: versesArray[0].split(".").map((e, index) => ({ index, e })),
+                    passage: versesArray[0],
+                },
                 // unformattedVerse:unformattedVerse.split("\n").map((e, index) => ({ index, e })),
             },
         });

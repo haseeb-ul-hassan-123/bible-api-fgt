@@ -1,6 +1,7 @@
 import express, { Request, Response, Router } from "express";
 import axios from "axios";
 import * as cheerio from "cheerio";
+import redis from "../../../cache";
 
 // Router
 const router: Router = express.Router();
@@ -15,6 +16,21 @@ router.get("/", async (req: Request, res: Response) => {
   const verses = (req.query.verses ??= "1");
   let version = (req.query.version ??= "KJV");
 
+  const redisQueryName = JSON.stringify({
+    url: "/api/v1/verse-with-index",
+    query: { verses, version, book, chapter },
+  });
+
+  const resp = await redis.get(redisQueryName);
+
+  if (resp) {
+    const parsedResp = JSON.parse(resp);
+    return res.json({
+      status: "success",
+      fromCache: true,
+      data: { length: parsedResp.length, docs: parsedResp },
+    });
+  }
   type bookType = {
     book: String;
     aliase: string;
@@ -47,7 +63,6 @@ router.get("/", async (req: Request, res: Response) => {
     return apiError(400, `Could not find book '${book}' by name or alias.`);
 
   let URL = `${baseURL}/${versionFinder.id}/${bookFinder.aliase}.${chapter}.${verses}`;
-  console.log(URL);
 
   try {
     const { data } = await axios.get(URL);
@@ -76,12 +91,25 @@ router.get("/", async (req: Request, res: Response) => {
       citationsArray.push(citation);
     });
 
-    return res.status(200).send({
-      status: "success",
-      data: {
+    await redis.set(
+      redisQueryName,
+      JSON.stringify({
         citation: citationsArray[0],
         // passage: versesArray[0].split(".").map((e, index) => ({ index, e })),
         passage: versesArray[0],
+        // unformattedVerse:unformattedVerse.split("\n").map((e, index) => ({ index, e })),
+      })
+    );
+
+    return res.status(200).send({
+      status: "success",
+      fromCache: false,
+      data: {
+        doc: {
+          citation: citationsArray[0],
+          // passage: versesArray[0].split(".").map((e, index) => ({ index, e })),
+          passage: versesArray[0],
+        },
         // unformattedVerse:unformattedVerse.split("\n").map((e, index) => ({ index, e })),
       },
     });
