@@ -102,7 +102,7 @@ router.route("/chapters-verse-list").get((req, res) => __awaiter(void 0, void 0,
     }
 }));
 router.get("/verse-with-index", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
+    var _a, _b;
     let { start, end, book, chapter } = req.query;
     const redisQueryName = JSON.stringify({
         url: "/verse-with-index",
@@ -125,7 +125,7 @@ router.get("/verse-with-index", (req, res) => __awaiter(void 0, void 0, void 0, 
     const localUrl = "http://localhost:4000/api/v1";
     const prodUrl = "https://bible-api-gft.vercel.app/api/v1";
     const verseCheck = yield axios_1.default.get(`${prodUrl}/chapters-verse-list?alias=${book}&chapter=${chapter}`);
-    const versesCount = (_a = verseCheck.data.data.docs.chapters) === null || _a === void 0 ? void 0 : _a.verses;
+    const versesCount = (_b = (_a = verseCheck.data.data.docs) === null || _a === void 0 ? void 0 : _a.chapters) === null || _b === void 0 ? void 0 : _b.verses;
     start = start !== null && start !== void 0 ? start : "1";
     end = end !== null && end !== void 0 ? end : `${versesCount}`;
     console.log(start, end, versesCount < end);

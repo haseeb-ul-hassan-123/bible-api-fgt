@@ -139,7 +139,7 @@ router.get("/verse-with-index", async (req, res) => {
   const verseCheck = await axios.get(
     `${prodUrl}/chapters-verse-list?alias=${book}&chapter=${chapter}`
   );
-  const versesCount = verseCheck.data.data.docs.chapters?.verses;
+  const versesCount = verseCheck.data.data.docs?.chapters?.verses;
   
   start = start ?? "1";
   end = end ?? `${versesCount}`;
