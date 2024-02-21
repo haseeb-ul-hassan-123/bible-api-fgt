@@ -89,6 +89,7 @@ router.route("/chapters-verse-list").get((req, res) => __awaiter(void 0, void 0,
             res.status(400).json({ status: "fail", msg: `wrong abbr: ${alias}` });
     }
     if (chapter) {
+        console.log(verseList);
         const payload = {
             chapters: verseList.chapters[+chapter - 1],
             book: { name: verseList.book, abbr: verseList.abbr },
@@ -103,10 +104,10 @@ router.route("/chapters-verse-list").get((req, res) => __awaiter(void 0, void 0,
 }));
 router.get("/verse-with-index", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
-    let { start, end, book, chapter } = req.query;
+    let { start, end, book, chapter, version } = req.query;
     const redisQueryName = JSON.stringify({
         url: "/verse-with-index",
-        query: { start, end, book, chapter },
+        query: { start, end, book, chapter, version },
     });
     const resp = yield cache_1.default.get(redisQueryName);
     if (resp) {
@@ -114,44 +115,61 @@ router.get("/verse-with-index", (req, res) => __awaiter(void 0, void 0, void 0, 
         return res.json({
             status: "success",
             fromCache: true,
-            data: { length: parsedResp.length, docs: parsedResp },
+            data: { totalVerse: parsedResp.length, docs: parsedResp },
         });
     }
     // if (!start || !end)
     //   return res.json({ status: "fail", message: "start or end is missing" });
     const promises = [];
     let docArr = [];
-    console.log(book, chapter);
     const localUrl = "http://localhost:4000/api/v1";
     const prodUrl = "https://bible-api-gft.vercel.app/api/v1";
-    const verseCheck = yield axios_1.default.get(`${prodUrl}/chapters-verse-list?alias=${book}&chapter=${chapter}`);
-    const versesCount = (_b = (_a = verseCheck.data.data.docs) === null || _a === void 0 ? void 0 : _a.chapters) === null || _b === void 0 ? void 0 : _b.verses;
-    start = start !== null && start !== void 0 ? start : "1";
-    end = end !== null && end !== void 0 ? end : `${versesCount}`;
-    console.log(start, end, versesCount < end);
-    if (versesCount < +end) {
-        return res.json({
-            status: "fail",
-            message: `Unexpected End - There Are Only ${versesCount} Verses On Chapter ${chapter}.`,
+    try {
+        const verseCheck = yield axios_1.default.get(`${prodUrl}/chapters-verse-list?alias=${book}&chapter=${chapter}`);
+        const versesCount = (_b = (_a = verseCheck.data.data.docs) === null || _a === void 0 ? void 0 : _a.chapters.verses) !== null && _b !== void 0 ? _b : verseCheck.data.data.chapters.verses;
+        console.log("🚀 :", versesCount);
+        if (!versesCount)
+            return res.json({ err: verseCheck.data });
+        start = start !== null && start !== void 0 ? start : "1";
+        end = end !== null && end !== void 0 ? end : `${versesCount}`;
+        if (versesCount < +end) {
+            return res.json({
+                status: "fail",
+                message: `Unexpected End - There Are Only ${versesCount} Verses On Chapter ${chapter}.`,
+            });
+        }
+        for (let index = +start; index <= +end; index++) {
+            promises.push(axios_1.default
+                .get(`${prodUrl}/verse?book=${book}&chapter=${chapter}&verses=${index}&version=${version}`)
+                .then((e) => {
+                docArr.push({
+                    verse: index,
+                    data: e.data.data.docs,
+                    id: `${book}.${chapter}.${index}`,
+                });
+            })
+                .catch((e) => console.log("Got Error", e.data)));
+        }
+        yield Promise.all(promises).then((e) => { });
+        docArr = docArr.sort((a, b) => a.verse - b.verse);
+        cache_1.default.set(redisQueryName, JSON.stringify(docArr));
+        return res
+            .status(200)
+            .json({
+            status: "success",
+            fromCache: false,
+            data: { totalVerse: docArr.length, docs: docArr },
         });
     }
-    for (let index = +start; index <= +end; index++) {
-        promises.push(axios_1.default
-            .get(`${prodUrl}/verse?book=${book}&chapter=${chapter}&verses=${index}`)
-            .then((e) => {
-            const data = e.data.data.docs;
-            docArr.push({ verse: index, data, id: `${book}.${chapter}.${index}` });
-        }));
+    catch (e) {
+        console.log(e);
+        res.json({ status: "fail", message: "Something Very Bad Happened :(" });
     }
-    yield Promise.all(promises);
-    docArr = docArr.sort((a, b) => a.verse - b.verse);
-    cache_1.default.set(redisQueryName, JSON.stringify(docArr));
-    return res
+}));
+router.route("/clear-cache").get((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const isCleared = yield cache_1.default.flushall();
+    res
         .status(200)
-        .json({
-        status: "success",
-        fromCache: false,
-        data: { totalVerse: docArr.length, docs: docArr },
-    });
+        .json({ status: "success", message: "Cache Cleared :)", isCleared });
 }));
 exports.default = router;

@@ -94,6 +94,7 @@ router.route("/chapters-verse-list").get(async (req, res) => {
   }
 
   if (chapter) {
+    console.log(verseList);
     const payload = {
       chapters: verseList.chapters[+chapter - 1],
       book: { name: verseList.book, abbr: verseList.abbr },
@@ -110,10 +111,10 @@ router.route("/chapters-verse-list").get(async (req, res) => {
 });
 
 router.get("/verse-with-index", async (req, res) => {
-  let { start, end, book, chapter } = req.query;
+  let { start, end, book, chapter, version } = req.query;
   const redisQueryName = JSON.stringify({
     url: "/verse-with-index",
-    query: { start, end, book, chapter },
+    query: { start, end, book, chapter, version },
   });
 
   const resp = await redis.get(redisQueryName);
@@ -122,7 +123,7 @@ router.get("/verse-with-index", async (req, res) => {
     return res.json({
       status: "success",
       fromCache: true,
-      data: { length: parsedResp.length, docs: parsedResp },
+      data: { totalVerse: parsedResp.length, docs: parsedResp },
     });
   }
 
@@ -132,52 +133,71 @@ router.get("/verse-with-index", async (req, res) => {
   const promises = [];
   let docArr: Array<any> = [];
 
-  console.log(book, chapter);
-
   const localUrl = "http://localhost:4000/api/v1";
   const prodUrl = "https://bible-api-gft.vercel.app/api/v1";
-  const verseCheck = await axios.get(
-    `${prodUrl}/chapters-verse-list?alias=${book}&chapter=${chapter}`
-  );
-  const versesCount = verseCheck.data.data.docs?.chapters?.verses;
-  
-  start = start ?? "1";
-  end = end ?? `${versesCount}`;
-  console.log(start, end, versesCount < end);
-  if (versesCount < +end) {
-    return res.json({
-      status: "fail",
-      message: `Unexpected End - There Are Only ${versesCount} Verses On Chapter ${chapter}.`,
-    });
-  }
-
-  for (let index = +start; index <= +end; index++) {
-    promises.push(
-      axios
-        .get(
-          `${prodUrl}/verse?book=${book}&chapter=${chapter}&verses=${index}`
-        )
-        .then((e) => {
-          const data = e.data.data.docs;
-          docArr.push({ verse: index, data,id:`${book}.${chapter}.${index}` });
-        })
+  try {
+    const verseCheck = await axios.get(
+      `${prodUrl}/chapters-verse-list?alias=${book}&chapter=${chapter}`
     );
+
+    const versesCount =
+      verseCheck.data.data.docs?.chapters.verses ??
+      verseCheck.data.data.chapters.verses;
+
+    console.log("🚀 :", versesCount);
+
+    if (!versesCount) return res.json({ err: verseCheck.data });
+    start = start ?? "1";
+    end = end ?? `${versesCount}`;
+
+    if (versesCount < +end) {
+      return res.json({
+        status: "fail",
+        message: `Unexpected End - There Are Only ${versesCount} Verses On Chapter ${chapter}.`,
+      });
+    }
+    for (let index = +start; index <= +end; index++) {
+      promises.push(
+        axios
+          .get(
+            `${prodUrl}/verse?book=${book}&chapter=${chapter}&verses=${index}&version=${version}`
+          )
+          .then((e) => {
+            docArr.push({
+              verse: index,
+              data: e.data.data.docs,
+              id: `${book}.${chapter}.${index}`,
+            });
+          })
+          .catch((e) => console.log("Got Error", e.data))
+      );
+    }
+
+    await Promise.all(promises).then((e) => {});
+
+    docArr = docArr.sort((a, b) => a.verse - b.verse);
+
+    redis.set(redisQueryName, JSON.stringify(docArr));
+
+    return res
+      .status(200)
+
+      .json({
+        status: "success",
+        fromCache: false,
+        data: { totalVerse: docArr.length, docs: docArr },
+      });
+  } catch (e) {
+    console.log(e);
+    res.json({ status: "fail", message: "Something Very Bad Happened :(" });
   }
+});
 
-  await Promise.all(promises);
-
-  docArr = docArr.sort((a, b) => a.verse - b.verse);
-
-  redis.set(redisQueryName, JSON.stringify(docArr));
-
-  return res
+router.route("/clear-cache").get(async (req, res) => {
+  const isCleared = await redis.flushall();
+  res
     .status(200)
-
-    .json({
-      status: "success",
-      fromCache: false,
-      data: { totalVerse: docArr.length, docs: docArr },
-    });
+    .json({ status: "success", message: "Cache Cleared :)", isCleared });
 });
 
 export default router;

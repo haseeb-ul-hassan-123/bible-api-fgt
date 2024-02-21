@@ -112,7 +112,7 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             status: "success",
             fromCache: false,
             data: {
-                doc: {
+                docs: {
                     citation: citationsArray[0],
                     // passage: versesArray[0].split(".").map((e, index) => ({ index, e })),
                     passage: versesArray[0],
