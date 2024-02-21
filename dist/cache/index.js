@@ -12,6 +12,6 @@ const redis = new ioredis_1.Redis({
     username: "default",
     password: redisPswrd,
 }).on("error", (err) => {
-    console.log("ioRedis Error");
+    console.log("ioRedis Error", err);
 });
 exports.default = redis;

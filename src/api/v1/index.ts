@@ -88,7 +88,7 @@ router.route("/chapters-verse-list").get(async (req, res) => {
   let verseList = require("./db/chapters-verse-list.json");
 
   if (alias) {
-    const indexOf = verseList.findIndex((e: any) => e.abbr === alias);
+    const indexOf = verseList.findIndex((e: any) => e.alias === alias);
     if (indexOf != -1) verseList = verseList[indexOf];
     else res.status(400).json({ status: "fail", msg: `wrong abbr: ${alias}` });
   }
@@ -109,16 +109,14 @@ router.route("/chapters-verse-list").get(async (req, res) => {
   }
 });
 
-router.get("/api/v1/verse-with-index", async (req, res) => {
+router.get("/verse-with-index", async (req, res) => {
   let { start, end, book, chapter } = req.query;
-
   const redisQueryName = JSON.stringify({
-    url: "/api/v1/verse-with-index",
+    url: "/verse-with-index",
     query: { start, end, book, chapter },
   });
 
   const resp = await redis.get(redisQueryName);
-
   if (resp) {
     const parsedResp = JSON.parse(resp);
     return res.json({
@@ -134,16 +132,19 @@ router.get("/api/v1/verse-with-index", async (req, res) => {
   const promises = [];
   let docArr: Array<any> = [];
 
+  console.log(book, chapter);
+
+  const localUrl = "http://localhost:4000/api/v1";
+  const prodUrl = "https://bible-api-gft.vercel.app/api/v1";
   const verseCheck = await axios.get(
-    `https://bible-api-gft.vercel.app/api/v1/chapters-verse-list?abbr=${book}&chapter=${chapter}`
+    `${prodUrl}/chapters-verse-list?alias=${book}&chapter=${chapter}`
   );
-
-  const versesCount = verseCheck.data.data.chapters.verses;
-
+  const versesCount = verseCheck.data.data.docs.chapters?.verses;
+  
   start = start ?? "1";
   end = end ?? `${versesCount}`;
-
-  if (versesCount < !end) {
+  console.log(start, end, versesCount < end);
+  if (versesCount < +end) {
     return res.json({
       status: "fail",
       message: `Unexpected End - There Are Only ${versesCount} Verses On Chapter ${chapter}.`,
@@ -154,10 +155,11 @@ router.get("/api/v1/verse-with-index", async (req, res) => {
     promises.push(
       axios
         .get(
-          `https://bible-api-gft.vercel.app/api/v1/verse?book=${book}&chapter=${chapter}&verses=${index}`
+          `${prodUrl}/verse?book=${book}&chapter=${chapter}&verses=${index}`
         )
         .then((e) => {
-          docArr.push({ verse: index, data: e.data.data });
+          const data = e.data.data.docs;
+          docArr.push({ verse: index, data,id:`${book}.${chapter}.${index}` });
         })
     );
   }
@@ -174,7 +176,7 @@ router.get("/api/v1/verse-with-index", async (req, res) => {
     .json({
       status: "success",
       fromCache: false,
-      data: { length: docArr.length, docs: docArr },
+      data: { totalVerse: docArr.length, docs: docArr },
     });
 });
 

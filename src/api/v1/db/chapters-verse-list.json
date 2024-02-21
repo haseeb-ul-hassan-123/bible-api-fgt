@@ -1,6 +1,6 @@
 [
   {
-    "abbr": "GEN",
+    "alias": "GEN",
     "book": "Genesis",
     "chapters": [
       { "chapter": "1", "verses": "31" },
@@ -57,7 +57,7 @@
   },
 
   {
-    "abbr": "EXOD",
+    "alias": "EXOD",
     "book": "Exodus",
     "chapters": [
       { "chapter": "1", "verses": "22" },
@@ -104,7 +104,7 @@
   },
 
   {
-    "abbr": "LEV",
+    "alias": "LEV",
     "book": "Leviticus",
     "chapters": [
       { "chapter": "1", "verses": "17" },
@@ -137,7 +137,7 @@
     ]
   },
   {
-    "abbr": "NUM",
+    "alias": "NUM",
     "book": "Numbers",
     "chapters": [
       { "chapter": "1", "verses": "54" },
@@ -179,7 +179,7 @@
     ]
   },
   {
-    "abbr": "DEUT",
+    "alias": "DEUT",
     "book": "Deuteronomy",
     "chapters": [
       { "chapter": "1", "verses": "46" },
@@ -219,7 +219,7 @@
     ]
   },
   {
-    "abbr": "JOSH",
+    "alias": "JOSH",
     "book": "Joshua",
     "chapters": [
       { "chapter": "1", "verses": "18" },
@@ -249,7 +249,7 @@
     ]
   },
   {
-    "abbr": "JUDG",
+    "alias": "JUDG",
     "book": "Judges",
     "chapters": [
       { "chapter": "1", "verses": "36" },
@@ -276,7 +276,7 @@
     ]
   },
   {
-    "abbr": "RUTH",
+    "alias": "RUTH",
     "book": "Ruth",
     "chapters": [
       { "chapter": "1", "verses": "22" },
@@ -286,7 +286,7 @@
     ]
   },
   {
-    "abbr": "1SAM",
+    "alias": "1SAM",
     "book": "1 Samuel",
     "chapters": [
       { "chapter": "1", "verses": "28" },
@@ -323,7 +323,7 @@
     ]
   },
   {
-    "abbr": "2SAM",
+    "alias": "2SAM",
     "book": "2 Samuel",
     "chapters": [
       { "chapter": "1", "verses": "27" },
@@ -353,7 +353,7 @@
     ]
   },
   {
-    "abbr": "1KGS",
+    "alias": "1KGS",
     "book": "1 Kings",
     "chapters": [
       { "chapter": "1", "verses": "53" },
@@ -381,7 +381,7 @@
     ]
   },
   {
-    "abbr": "2KGS",
+    "alias": "2KGS",
     "book": "2 Kings",
     "chapters": [
       { "chapter": "1", "verses": "18" },
@@ -412,7 +412,7 @@
     ]
   },
   {
-    "abbr": "1CHR",
+    "alias": "1CHR",
     "book": "1 Chronicles",
     "chapters": [
       { "chapter": "1", "verses": "54" },
@@ -447,7 +447,7 @@
     ]
   },
   {
-    "abbr": "2CHR",
+    "alias": "2CHR",
     "book": "2 Chronicles",
     "chapters": [
       { "chapter": "1", "verses": "17" },
@@ -489,7 +489,7 @@
     ]
   },
   {
-    "abbr": "EZRA",
+    "alias": "EZRA",
     "book": "Ezra",
     "chapters": [
       { "chapter": "1", "verses": "11" },
@@ -505,7 +505,7 @@
     ]
   },
   {
-    "abbr": "NEH",
+    "alias": "NEH",
     "book": "Nehemiah",
     "chapters": [
       { "chapter": "1", "verses": "11" },
@@ -524,7 +524,7 @@
     ]
   },
   {
-    "abbr": "ESTH",
+    "alias": "ESTH",
     "book": "Esther",
     "chapters": [
       { "chapter": "1", "verses": "22" },
@@ -540,7 +540,7 @@
     ]
   },
   {
-    "abbr": "JOB",
+    "alias": "JOB",
     "book": "Job",
     "chapters": [
       { "chapter": "1", "verses": "22" },
@@ -588,7 +588,7 @@
     ]
   },
   {
-    "abbr": "PS",
+    "alias": "PS",
     "book": "Psalm",
     "chapters": [
       { "chapter": "1", "verses": "6" },
@@ -744,7 +744,7 @@
     ]
   },
   {
-    "abbr": "PROV",
+    "alias": "PROV",
     "book": "Proverbs",
     "chapters": [
       { "chapter": "1", "verses": "33" },
@@ -781,7 +781,7 @@
     ]
   },
   {
-    "abbr": "ECCL",
+    "alias": "ECCL",
     "book": "Ecclesiastes",
     "chapters": [
       { "chapter": "1", "verses": "18" },
@@ -799,7 +799,7 @@
     ]
   },
   {
-    "abbr": "SONG",
+    "alias": "SONG",
     "book": "Song of Solomon",
     "chapters": [
       { "chapter": "1", "verses": "17" },
@@ -813,7 +813,7 @@
     ]
   },
   {
-    "abbr": "ISA",
+    "alias": "ISA",
     "book": "Isaiah",
     "chapters": [
       { "chapter": "1", "verses": "31" },
@@ -885,7 +885,7 @@
     ]
   },
   {
-    "abbr": "JER",
+    "alias": "JER",
     "book": "Jeremiah",
     "chapters": [
       { "chapter": "1", "verses": "19" },
@@ -943,7 +943,7 @@
     ]
   },
   {
-    "abbr": "LAM",
+    "alias": "LAM",
     "book": "Lamentations",
     "chapters": [
       { "chapter": "1", "verses": "22" },
@@ -954,7 +954,7 @@
     ]
   },
   {
-    "abbr": "EZEK",
+    "alias": "EZEK",
     "book": "Ezekiel",
     "chapters": [
       { "chapter": "1", "verses": "28" },
@@ -1008,7 +1008,7 @@
     ]
   },
   {
-    "abbr": "DAN",
+    "alias": "DAN",
     "book": "Daniel",
     "chapters": [
       { "chapter": "1", "verses": "21" },
@@ -1026,7 +1026,7 @@
     ]
   },
   {
-    "abbr": "HOS",
+    "alias": "HOS",
     "book": "Hosea",
     "chapters": [
       { "chapter": "1", "verses": "11" },
@@ -1046,7 +1046,7 @@
     ]
   },
   {
-    "abbr": "JOEL",
+    "alias": "JOEL",
     "book": "Joel",
     "chapters": [
       { "chapter": "1", "verses": "20" },
@@ -1055,7 +1055,7 @@
     ]
   },
   {
-    "abbr": "AMOS",
+    "alias": "AMOS",
     "book": "Amos",
     "chapters": [
       { "chapter": "1", "verses": "15" },
@@ -1070,12 +1070,12 @@
     ]
   },
   {
-    "abbr": "OBAD",
+    "alias": "OBAD",
     "book": "Obadiah",
     "chapters": [{ "chapter": "1", "verses": "21" }]
   },
   {
-    "abbr": "JONAH",
+    "alias": "JONAH",
     "book": "Jonah",
     "chapters": [
       { "chapter": "1", "verses": "17" },
@@ -1085,7 +1085,7 @@
     ]
   },
   {
-    "abbr": "MIC",
+    "alias": "MIC",
     "book": "Micah",
     "chapters": [
       { "chapter": "1", "verses": "16" },
@@ -1098,7 +1098,7 @@
     ]
   },
   {
-    "abbr": "NAH",
+    "alias": "NAH",
     "book": "Nahum",
     "chapters": [
       { "chapter": "1", "verses": "15" },
@@ -1107,7 +1107,7 @@
     ]
   },
   {
-    "abbr": "HAB",
+    "alias": "HAB",
     "book": "Habakkuk",
     "chapters": [
       { "chapter": "1", "verses": "17" },
@@ -1116,7 +1116,7 @@
     ]
   },
   {
-    "abbr": "ZEPH",
+    "alias": "ZEPH",
     "book": "Zephaniah",
     "chapters": [
       { "chapter": "1", "verses": "18" },
@@ -1125,7 +1125,7 @@
     ]
   },
   {
-    "abbr": "HAG",
+    "alias": "HAG",
     "book": "Haggai",
     "chapters": [
       { "chapter": "1", "verses": "15" },
@@ -1133,7 +1133,7 @@
     ]
   },
   {
-    "abbr": "ZECH",
+    "alias": "ZECH",
     "book": "Zechariah",
     "chapters": [
       { "chapter": "1", "verses": "21" },
@@ -1153,7 +1153,7 @@
     ]
   },
   {
-    "abbr": "MAL",
+    "alias": "MAL",
     "book": "Malachi",
     "chapters": [
       { "chapter": "1", "verses": "14" },
@@ -1163,7 +1163,7 @@
     ]
   },
   {
-    "abbr": "MATT",
+    "alias": "MATT",
     "book": "Matthew",
     "chapters": [
       { "chapter": "1", "verses": "25" },
@@ -1197,7 +1197,7 @@
     ]
   },
   {
-    "abbr": "MARK",
+    "alias": "MARK",
     "book": "Mark",
     "chapters": [
       { "chapter": "1", "verses": "45" },
@@ -1219,7 +1219,7 @@
     ]
   },
   {
-    "abbr": "LUKE",
+    "alias": "LUKE",
     "book": "Luke",
     "chapters": [
       { "chapter": "1", "verses": "80" },
@@ -1249,7 +1249,7 @@
     ]
   },
   {
-    "abbr": "JOHN",
+    "alias": "JOHN",
     "book": "John",
     "chapters": [
       { "chapter": "1", "verses": "51" },
@@ -1276,7 +1276,7 @@
     ]
   },
   {
-    "abbr": "ACTS",
+    "alias": "ACTS",
     "book": "Acts",
     "chapters": [
       { "chapter": "1", "verses": "26" },
@@ -1310,7 +1310,7 @@
     ]
   },
   {
-    "abbr": "ROM",
+    "alias": "ROM",
     "book": "Romans",
     "chapters": [
       { "chapter": "1", "verses": "32" },
@@ -1332,7 +1332,7 @@
     ]
   },
   {
-    "abbr": "1COR",
+    "alias": "1COR",
     "book": "1 Corinthians",
     "chapters": [
       { "chapter": "1", "verses": "31" },
@@ -1354,7 +1354,7 @@
     ]
   },
   {
-    "abbr": "2COR",
+    "alias": "2COR",
     "book": "2 Corinthians",
     "chapters": [
       { "chapter": "1", "verses": "24" },
@@ -1373,7 +1373,7 @@
     ]
   },
   {
-    "abbr": "GAL",
+    "alias": "GAL",
     "book": "Galatians",
     "chapters": [
       { "chapter": "1", "verses": "24" },
@@ -1385,7 +1385,7 @@
     ]
   },
   {
-    "abbr": "EPH",
+    "alias": "EPH",
     "book": "Ephesians",
     "chapters": [
       { "chapter": "1", "verses": "23" },
@@ -1397,7 +1397,7 @@
     ]
   },
   {
-    "abbr": "PHIL",
+    "alias": "PHIL",
     "book": "Philippians",
     "chapters": [
       { "chapter": "1", "verses": "30" },
@@ -1407,7 +1407,7 @@
     ]
   },
   {
-    "abbr": "COL",
+    "alias": "COL",
     "book": "Colossians",
     "chapters": [
       { "chapter": "1", "verses": "29" },
@@ -1417,7 +1417,7 @@
     ]
   },
   {
-    "abbr": "1THESS",
+    "alias": "1THESS",
     "book": "1 Thessalonians",
     "chapters": [
       { "chapter": "1", "verses": "10" },
@@ -1428,7 +1428,7 @@
     ]
   },
   {
-    "abbr": "2THESS",
+    "alias": "2THESS",
     "book": "2 Thessalonians",
     "chapters": [
       { "chapter": "1", "verses": "12" },
@@ -1437,7 +1437,7 @@
     ]
   },
   {
-    "abbr": "1TIM",
+    "alias": "1TIM",
     "book": "1 Timothy",
     "chapters": [
       { "chapter": "1", "verses": "20" },
@@ -1449,7 +1449,7 @@
     ]
   },
   {
-    "abbr": "2TIM",
+    "alias": "2TIM",
     "book": "2 Timothy",
     "chapters": [
       { "chapter": "1", "verses": "18" },
@@ -1459,7 +1459,7 @@
     ]
   },
   {
-    "abbr": "TITUS",
+    "alias": "TITUS",
     "book": "Titus",
     "chapters": [
       { "chapter": "1", "verses": "16" },
@@ -1468,12 +1468,12 @@
     ]
   },
   {
-    "abbr": "PHLM",
+    "alias": "PHLM",
     "book": "Philemon",
     "chapters": [{ "chapter": "1", "verses": "25" }]
   },
   {
-    "abbr": "HEB",
+    "alias": "HEB",
     "book": "Hebrews",
     "chapters": [
       { "chapter": "1", "verses": "14" },
@@ -1492,7 +1492,7 @@
     ]
   },
   {
-    "abbr": "JAS",
+    "alias": "JAS",
     "book": "James",
     "chapters": [
       { "chapter": "1", "verses": "27" },
@@ -1503,7 +1503,7 @@
     ]
   },
   {
-    "abbr": "1PET",
+    "alias": "1PET",
     "book": "1 Peter",
     "chapters": [
       { "chapter": "1", "verses": "25" },
@@ -1514,7 +1514,7 @@
     ]
   },
   {
-    "abbr": "2PET",
+    "alias": "2PET",
     "book": "2 Peter",
     "chapters": [
       { "chapter": "1", "verses": "21" },
@@ -1523,7 +1523,7 @@
     ]
   },
   {
-    "abbr": "1JOHN",
+    "alias": "1JOHN",
     "book": "1 John",
     "chapters": [
       { "chapter": "1", "verses": "10" },
@@ -1534,22 +1534,22 @@
     ]
   },
   {
-    "abbr": "2JOHN",
+    "alias": "2JOHN",
     "book": "2 John",
     "chapters": [{ "chapter": "1", "verses": "13" }]
   },
   {
-    "abbr": "3JOHN",
+    "alias": "3JOHN",
     "book": "3 John",
     "chapters": [{ "chapter": "1", "verses": "14" }]
   },
   {
-    "abbr": "JUDE",
+    "alias": "JUDE",
     "book": "Jude",
     "chapters": [{ "chapter": "1", "verses": "25" }]
   },
   {
-    "abbr": "REV",
+    "alias": "REV",
     "book": "Revelation",
     "chapters": [
       { "chapter": "1", "verses": "20" },

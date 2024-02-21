@@ -82,7 +82,7 @@ router.route("/chapters-verse-list").get((req, res) => __awaiter(void 0, void 0,
     }
     let verseList = require("./db/chapters-verse-list.json");
     if (alias) {
-        const indexOf = verseList.findIndex((e) => e.abbr === alias);
+        const indexOf = verseList.findIndex((e) => e.alias === alias);
         if (indexOf != -1)
             verseList = verseList[indexOf];
         else
@@ -101,10 +101,11 @@ router.route("/chapters-verse-list").get((req, res) => __awaiter(void 0, void 0,
         });
     }
 }));
-router.get("/api/v1/verse-with-index", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get("/verse-with-index", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     let { start, end, book, chapter } = req.query;
     const redisQueryName = JSON.stringify({
-        url: "/api/v1/verse-with-index",
+        url: "/verse-with-index",
         query: { start, end, book, chapter },
     });
     const resp = yield cache_1.default.get(redisQueryName);
@@ -120,11 +121,15 @@ router.get("/api/v1/verse-with-index", (req, res) => __awaiter(void 0, void 0, v
     //   return res.json({ status: "fail", message: "start or end is missing" });
     const promises = [];
     let docArr = [];
-    const verseCheck = yield axios_1.default.get(`https://bible-api-gft.vercel.app/api/v1/chapters-verse-list?abbr=${book}&chapter=${chapter}`);
-    const versesCount = verseCheck.data.data.chapters.verses;
+    console.log(book, chapter);
+    const localUrl = "http://localhost:4000/api/v1";
+    const prodUrl = "https://bible-api-gft.vercel.app/api/v1";
+    const verseCheck = yield axios_1.default.get(`${prodUrl}/chapters-verse-list?alias=${book}&chapter=${chapter}`);
+    const versesCount = (_a = verseCheck.data.data.docs.chapters) === null || _a === void 0 ? void 0 : _a.verses;
     start = start !== null && start !== void 0 ? start : "1";
     end = end !== null && end !== void 0 ? end : `${versesCount}`;
-    if (versesCount < !end) {
+    console.log(start, end, versesCount < end);
+    if (versesCount < +end) {
         return res.json({
             status: "fail",
             message: `Unexpected End - There Are Only ${versesCount} Verses On Chapter ${chapter}.`,
@@ -132,9 +137,10 @@ router.get("/api/v1/verse-with-index", (req, res) => __awaiter(void 0, void 0, v
     }
     for (let index = +start; index <= +end; index++) {
         promises.push(axios_1.default
-            .get(`https://bible-api-gft.vercel.app/api/v1/verse?book=${book}&chapter=${chapter}&verses=${index}`)
+            .get(`${prodUrl}/verse?book=${book}&chapter=${chapter}&verses=${index}`)
             .then((e) => {
-            docArr.push({ verse: index, data: e.data.data });
+            const data = e.data.data.docs;
+            docArr.push({ verse: index, data, id: `${book}.${chapter}.${index}` });
         }));
     }
     yield Promise.all(promises);
@@ -145,7 +151,7 @@ router.get("/api/v1/verse-with-index", (req, res) => __awaiter(void 0, void 0, v
         .json({
         status: "success",
         fromCache: false,
-        data: { length: docArr.length, docs: docArr },
+        data: { totalVerse: docArr.length, docs: docArr },
     });
 }));
 exports.default = router;

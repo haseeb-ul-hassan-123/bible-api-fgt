@@ -16,14 +16,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_extended_1 = __importDefault(require("dotenv-extended"));
 const index_1 = __importDefault(require("./api/index"));
+const cache_1 = __importDefault(require("./cache"));
 dotenv_extended_1.default.load();
 const app = (0, express_1.default)();
 const port = (_a = process.env.PORT) !== null && _a !== void 0 ? _a : 3000;
 app.use(express_1.default.json());
 app.use("/api", index_1.default);
-app.get("/", (req, res) => {
+app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    yield cache_1.default.flushall();
     return res.status(200).json({ body: req.body, status: "Trueee...." });
-});
+}));
 app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
     console.log(`⚡️[Server]: Express Server is running `);
 }));

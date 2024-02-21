@@ -14,11 +14,10 @@ app.use(express.json());
 
 app.use("/api", api);
 
-app.get("/", (req, res) => {
+app.get("/", async(req, res) => {
+  await redis.flushall()
   return res.status(200).json({ body: req.body, status: "Trueee...." });
 });
-
-
 
 app.listen(port, async () => {
   console.log(`⚡️[Server]: Express Server is running `);

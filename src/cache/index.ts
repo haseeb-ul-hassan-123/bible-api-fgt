@@ -14,7 +14,7 @@ const redis = new Redis({
   username: "default", // needs Redis >= 6
   password: redisPswrd,
 }).on("error", (err) => {
-  console.log("ioRedis Error");
+  console.log("ioRedis Error",err);
 });
 
 export default redis;
