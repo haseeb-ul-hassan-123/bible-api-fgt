@@ -18,7 +18,7 @@ router.get("/", async (req: Request, res: Response) => {
 
   const redisQueryName = JSON.stringify({
     url: "/api/v1/verse",
-    query: { verses, version, book, chapter, },
+    query: { verses, version, book, chapter },
   });
 
   const resp = await redis.get(redisQueryName);
@@ -64,7 +64,7 @@ router.get("/", async (req: Request, res: Response) => {
 
   let URL = `${baseURL}/${versionFinder.id}/${bookFinder.aliase}.${chapter}.${verses}`;
 
-  console.log(URL,versionFinder.id);
+  console.log(URL, versionFinder.id);
 
   try {
     const { data } = await axios.get(URL);

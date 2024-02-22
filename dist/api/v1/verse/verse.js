@@ -53,7 +53,7 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let version = ((_c = (_h = req.query).version) !== null && _c !== void 0 ? _c : (_h.version = "KJV"));
     const redisQueryName = JSON.stringify({
         url: "/api/v1/verse",
-        query: { verses, version, book, chapter, },
+        query: { verses, version, book, chapter },
     });
     const resp = yield cache_1.default.get(redisQueryName);
     if (resp) {
