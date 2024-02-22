@@ -13,8 +13,10 @@ const redis = new Redis({
   host: "redis-14248.c322.us-east-1-2.ec2.cloud.redislabs.com", // Redis host
   username: "default", // needs Redis >= 6
   password: redisPswrd,
+  
 }).on("error", (err) => {
   console.log("ioRedis Error",err);
 });
 
+// redis.config('SET',)
 export default redis;

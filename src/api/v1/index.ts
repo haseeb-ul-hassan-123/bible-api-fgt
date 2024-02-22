@@ -137,7 +137,7 @@ router.get("/verse-with-index", async (req, res) => {
   const prodUrl = "https://bible-api-gft.vercel.app/api/v1";
   try {
     const verseCheck = await axios.get(
-      `${prodUrl}/chapters-verse-list?alias=${book}&chapter=${chapter}`
+      `${localUrl}/chapters-verse-list?alias=${book}&chapter=${chapter}`
     );
 
     const versesCount =
@@ -160,7 +160,7 @@ router.get("/verse-with-index", async (req, res) => {
       promises.push(
         axios
           .get(
-            `${prodUrl}/verse?book=${book}&chapter=${chapter}&verses=${index}&version=${version}`
+            `${localUrl}/verse?book=${book}&chapter=${chapter}&verses=${index}&version=${version}`
           )
           .then((e) => {
             docArr.push({

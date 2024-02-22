@@ -17,8 +17,8 @@ router.get("/", async (req: Request, res: Response) => {
   let version = (req.query.version ??= "KJV");
 
   const redisQueryName = JSON.stringify({
-    url: "/api/v1/verse-with-index",
-    query: { verses, version, book, chapter },
+    url: "/api/v1/verse",
+    query: { verses, version, book, chapter, },
   });
 
   const resp = await redis.get(redisQueryName);
@@ -63,6 +63,8 @@ router.get("/", async (req: Request, res: Response) => {
     return apiError(400, `Could not find book '${book}' by name or alias.`);
 
   let URL = `${baseURL}/${versionFinder.id}/${bookFinder.aliase}.${chapter}.${verses}`;
+
+  console.log(URL,versionFinder.id);
 
   try {
     const { data } = await axios.get(URL);

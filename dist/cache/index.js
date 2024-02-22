@@ -14,4 +14,5 @@ const redis = new ioredis_1.Redis({
 }).on("error", (err) => {
     console.log("ioRedis Error", err);
 });
+// redis.config('SET',)
 exports.default = redis;

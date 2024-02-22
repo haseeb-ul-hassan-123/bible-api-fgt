@@ -52,8 +52,8 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const verses = ((_b = (_g = req.query).verses) !== null && _b !== void 0 ? _b : (_g.verses = "1"));
     let version = ((_c = (_h = req.query).version) !== null && _c !== void 0 ? _c : (_h.version = "KJV"));
     const redisQueryName = JSON.stringify({
-        url: "/api/v1/verse-with-index",
-        query: { verses, version, book, chapter },
+        url: "/api/v1/verse",
+        query: { verses, version, book, chapter, },
     });
     const resp = yield cache_1.default.get(redisQueryName);
     if (resp) {
@@ -80,6 +80,7 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (!bookFinder)
         return apiError(400, `Could not find book '${book}' by name or alias.`);
     let URL = `${baseURL}/${versionFinder.id}/${bookFinder.aliase}.${chapter}.${verses}`;
+    console.log(URL, versionFinder.id);
     try {
         const { data } = yield axios_1.default.get(URL);
         const $ = cheerio.load(data);
