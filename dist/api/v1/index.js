@@ -129,7 +129,7 @@ router.get("/verse-with-index", (req, res) => __awaiter(void 0, void 0, void 0, 
     let docArr = [];
     const baseUrl = true
         ? "http://localhost:4000/api/v1"
-        : "https://bible-api-gft.vercel.app/api/v1";
+        : "http://ec2-3-80-86-162.compute-1.amazonaws.com/api/v1";
     try {
         const verseCheck = yield axios_1.default.get(`${baseUrl}/chapters-verse-list?alias=${book}&chapter=${chapter}`);
         const versesCount = (_b = (_a = verseCheck.data.data.docs) === null || _a === void 0 ? void 0 : _a.chapters.verses) !== null && _b !== void 0 ? _b : verseCheck.data.data.chapters.verses;

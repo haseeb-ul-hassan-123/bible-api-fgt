@@ -140,7 +140,7 @@ router.get("/verse-with-index", async (req, res) => {
 
   const baseUrl = true
     ? "http://localhost:4000/api/v1"
-    : "https://bible-api-gft.vercel.app/api/v1";
+    : "http://ec2-3-80-86-162.compute-1.amazonaws.com/api/v1";
 
   try {
     const verseCheck = await axios.get(
