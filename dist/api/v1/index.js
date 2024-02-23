@@ -66,40 +66,45 @@ router.route("/books").get((req, res) => __awaiter(void 0, void 0, void 0, funct
     });
 }));
 router.route("/chapters-verse-list").get((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { alias, chapter } = req.query;
-    const redisQueryName = JSON.stringify({
-        url: "chapters-verse-list",
-        query: { alias, chapter },
-    });
-    const resp = yield cache_1.default.get(redisQueryName);
-    if (resp) {
-        const parsedResp = JSON.parse(resp);
-        return res.json({
-            status: "success",
-            fromCache: true,
-            data: { length: parsedResp.length, docs: parsedResp },
+    try {
+        const { alias, chapter } = req.query;
+        const redisQueryName = JSON.stringify({
+            url: "chapters-verse-list",
+            query: { alias, chapter },
         });
+        const resp = yield cache_1.default.get(redisQueryName);
+        if (resp) {
+            const parsedResp = JSON.parse(resp);
+            return res.json({
+                status: "success",
+                fromCache: true,
+                data: { length: parsedResp.length, docs: parsedResp },
+            });
+        }
+        let verseList = require("./db/chapters-verse-list.json");
+        if (alias) {
+            const indexOf = verseList.findIndex((e) => e.alias === alias);
+            if (indexOf != -1)
+                verseList = verseList[indexOf];
+            else
+                res.status(400).json({ status: "fail", msg: `wrong alias: ${alias}` });
+        }
+        if (chapter) {
+            const payload = {
+                chapters: verseList.chapters[+chapter - 1],
+                book: { name: verseList.book, abbr: verseList.abbr },
+            };
+            yield cache_1.default.set(redisQueryName, JSON.stringify(payload));
+            return res.status(200).json({
+                status: "success",
+                fromCache: false,
+                data: Object.assign({}, payload),
+            });
+        }
     }
-    let verseList = require("./db/chapters-verse-list.json");
-    if (alias) {
-        const indexOf = verseList.findIndex((e) => e.alias === alias);
-        if (indexOf != -1)
-            verseList = verseList[indexOf];
-        else
-            res.status(400).json({ status: "fail", msg: `wrong abbr: ${alias}` });
-    }
-    if (chapter) {
-        console.log(verseList);
-        const payload = {
-            chapters: verseList.chapters[+chapter - 1],
-            book: { name: verseList.book, abbr: verseList.abbr },
-        };
-        yield cache_1.default.set(redisQueryName, JSON.stringify(payload));
-        return res.status(200).json({
-            status: "success",
-            fromCache: false,
-            data: Object.assign({}, payload),
-        });
+    catch (error) {
+        console.log("GOT ERROR");
+        // res.json({status:'fail',message:"Something Very Bad :("})
     }
 }));
 router.get("/verse-with-index", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -122,10 +127,11 @@ router.get("/verse-with-index", (req, res) => __awaiter(void 0, void 0, void 0, 
     //   return res.json({ status: "fail", message: "start or end is missing" });
     const promises = [];
     let docArr = [];
-    const localUrl = "http://localhost:4000/api/v1";
-    const prodUrl = "https://bible-api-gft.vercel.app/api/v1";
+    const baseUrl = true
+        ? "http://localhost:4000/api/v1"
+        : "https://bible-api-gft.vercel.app/api/v1";
     try {
-        const verseCheck = yield axios_1.default.get(`${localUrl}/chapters-verse-list?alias=${book}&chapter=${chapter}`);
+        const verseCheck = yield axios_1.default.get(`${baseUrl}/chapters-verse-list?alias=${book}&chapter=${chapter}`);
         const versesCount = (_b = (_a = verseCheck.data.data.docs) === null || _a === void 0 ? void 0 : _a.chapters.verses) !== null && _b !== void 0 ? _b : verseCheck.data.data.chapters.verses;
         console.log("🚀 :", versesCount);
         if (!versesCount)
@@ -140,7 +146,7 @@ router.get("/verse-with-index", (req, res) => __awaiter(void 0, void 0, void 0, 
         }
         for (let index = +start; index <= +end; index++) {
             promises.push(axios_1.default
-                .get(`${localUrl}/verse?book=${book}&chapter=${chapter}&verses=${index}&version=${version}`)
+                .get(`${baseUrl}/verse?book=${book}&chapter=${chapter}&verses=${index}&version=${version}`)
                 .then((e) => {
                 docArr.push({
                     verse: index,
@@ -162,7 +168,7 @@ router.get("/verse-with-index", (req, res) => __awaiter(void 0, void 0, void 0, 
         });
     }
     catch (e) {
-        console.log(e);
+        console.log(`GOT ERROR`, start, end, book, chapter, version, e.response.data);
         res.json({ status: "fail", message: "Something Very Bad Happened :(" });
     }
 }));

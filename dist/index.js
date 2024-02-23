@@ -24,9 +24,11 @@ app.use(express_1.default.json());
 app.use("/api", index_1.default);
 app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     yield cache_1.default.flushall();
-    return res.status(200).json({ body: req.body, status: "Trueee...." });
+    return res
+        .status(200)
+        .json({ status: "success", message: "Fusion Wave Bible Api" });
 }));
 app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(`⚡️[Server]: Express Server is running `);
+    console.log(`⚡️[Server]: Express Server is running ${port} `);
 }));
 exports.default = app;

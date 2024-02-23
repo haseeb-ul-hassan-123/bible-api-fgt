@@ -67,46 +67,51 @@ router.route("/books").get(async (req, res) => {
 });
 
 router.route("/chapters-verse-list").get(async (req, res) => {
-  const { alias, chapter } = req.query;
+  try {
+    const { alias, chapter } = req.query;
 
-  const redisQueryName = JSON.stringify({
-    url: "chapters-verse-list",
-    query: { alias, chapter },
-  });
-
-  const resp = await redis.get(redisQueryName);
-
-  if (resp) {
-    const parsedResp = JSON.parse(resp);
-    return res.json({
-      status: "success",
-      fromCache: true,
-      data: { length: parsedResp.length, docs: parsedResp },
+    const redisQueryName = JSON.stringify({
+      url: "chapters-verse-list",
+      query: { alias, chapter },
     });
-  }
 
-  let verseList = require("./db/chapters-verse-list.json");
+    const resp = await redis.get(redisQueryName);
 
-  if (alias) {
-    const indexOf = verseList.findIndex((e: any) => e.alias === alias);
-    if (indexOf != -1) verseList = verseList[indexOf];
-    else res.status(400).json({ status: "fail", msg: `wrong abbr: ${alias}` });
-  }
+    if (resp) {
+      const parsedResp = JSON.parse(resp);
+      return res.json({
+        status: "success",
+        fromCache: true,
+        data: { length: parsedResp.length, docs: parsedResp },
+      });
+    }
 
-  if (chapter) {
-    console.log(verseList);
-    const payload = {
-      chapters: verseList.chapters[+chapter - 1],
-      book: { name: verseList.book, abbr: verseList.abbr },
-    };
+    let verseList = require("./db/chapters-verse-list.json");
 
-    await redis.set(redisQueryName, JSON.stringify(payload));
+    if (alias) {
+      const indexOf = verseList.findIndex((e: any) => e.alias === alias);
+      if (indexOf != -1) verseList = verseList[indexOf];
+      else
+        res.status(400).json({ status: "fail", msg: `wrong alias: ${alias}` });
+    }
 
-    return res.status(200).json({
-      status: "success",
-      fromCache: false,
-      data: { ...payload },
-    });
+    if (chapter) {
+      const payload = {
+        chapters: verseList.chapters[+chapter - 1],
+        book: { name: verseList.book, abbr: verseList.abbr },
+      };
+
+      await redis.set(redisQueryName, JSON.stringify(payload));
+
+      return res.status(200).json({
+        status: "success",
+        fromCache: false,
+        data: { ...payload },
+      });
+    }
+  } catch (error) {
+    console.log("GOT ERROR");
+    // res.json({status:'fail',message:"Something Very Bad :("})
   }
 });
 
@@ -133,11 +138,13 @@ router.get("/verse-with-index", async (req, res) => {
   const promises = [];
   let docArr: Array<any> = [];
 
-  const localUrl = "http://localhost:4000/api/v1";
-  const prodUrl = "https://bible-api-gft.vercel.app/api/v1";
+  const baseUrl = true
+    ? "http://localhost:4000/api/v1"
+    : "https://bible-api-gft.vercel.app/api/v1";
+
   try {
     const verseCheck = await axios.get(
-      `${localUrl}/chapters-verse-list?alias=${book}&chapter=${chapter}`
+      `${baseUrl}/chapters-verse-list?alias=${book}&chapter=${chapter}`
     );
 
     const versesCount =
@@ -160,7 +167,7 @@ router.get("/verse-with-index", async (req, res) => {
       promises.push(
         axios
           .get(
-            `${localUrl}/verse?book=${book}&chapter=${chapter}&verses=${index}&version=${version}`
+            `${baseUrl}/verse?book=${book}&chapter=${chapter}&verses=${index}&version=${version}`
           )
           .then((e) => {
             docArr.push({
@@ -187,8 +194,8 @@ router.get("/verse-with-index", async (req, res) => {
         fromCache: false,
         data: { totalVerse: docArr.length, docs: docArr },
       });
-  } catch (e) {
-    console.log(e);
+  } catch (e: any) {
+    console.log(`GOT ERROR`, start, end, book, chapter, version, e.response.data);
     res.json({ status: "fail", message: "Something Very Bad Happened :(" });
   }
 });
