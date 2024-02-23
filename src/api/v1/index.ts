@@ -138,7 +138,7 @@ router.get("/verse-with-index", async (req, res) => {
   const promises = [];
   let docArr: Array<any> = [];
 
-  const baseUrl = false
+  const baseUrl = true
     ? "http://localhost:3000/api/v1"
     : "http://ec2-3-80-86-162.compute-1.amazonaws.com:3000/api/v1";
 

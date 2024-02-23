@@ -127,7 +127,7 @@ router.get("/verse-with-index", (req, res) => __awaiter(void 0, void 0, void 0, 
     //   return res.json({ status: "fail", message: "start or end is missing" });
     const promises = [];
     let docArr = [];
-    const baseUrl = false
+    const baseUrl = true
         ? "http://localhost:3000/api/v1"
         : "http://ec2-3-80-86-162.compute-1.amazonaws.com:3000/api/v1";
     try {
