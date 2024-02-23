@@ -139,7 +139,7 @@ router.get("/verse-with-index", async (req, res) => {
   let docArr: Array<any> = [];
 
   const baseUrl = true
-    ? "http://localhost:4000/api/v1"
+    ? "http://localhost:3000/api/v1"
     : "http://ec2-3-80-86-162.compute-1.amazonaws.com:3000/api/v1";
 
   try {
@@ -196,7 +196,8 @@ router.get("/verse-with-index", async (req, res) => {
       });
   } catch (e: any) {
     console.log(`GOT ERROR`, start, end, book, chapter, version, e.response.data);
-    res.json({ status: "fail", message: "Something Very Bad Happened :(" });
+    res.json({ status: "fail", message: "Something Very Bad Happened :(",error:e});
+     });
   }
 });
 
