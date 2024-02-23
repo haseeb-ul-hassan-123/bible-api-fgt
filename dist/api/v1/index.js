@@ -127,7 +127,7 @@ router.get("/verse-with-index", (req, res) => __awaiter(void 0, void 0, void 0, 
     //   return res.json({ status: "fail", message: "start or end is missing" });
     const promises = [];
     let docArr = [];
-    const baseUrl = true
+    const baseUrl = false
         ? "http://localhost:3000/api/v1"
         : "http://ec2-3-80-86-162.compute-1.amazonaws.com:3000/api/v1";
     try {
@@ -169,10 +169,9 @@ router.get("/verse-with-index", (req, res) => __awaiter(void 0, void 0, void 0, 
     }
     catch (e) {
         console.log(`GOT ERROR`, start, end, book, chapter, version, e.response.data);
-        res.json({ status: "fail", message: "Something Very Bad Happened :(", error: e });
+        res.json({ status: "fail", message: "Something Very Bad Happened :(", e });
     }
 }));
-;
 router.route("/clear-cache").get((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const isCleared = yield cache_1.default.flushall();
     res
